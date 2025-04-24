@@ -1,0 +1,60 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Footer from '../components/Footer.astro';
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <BaseHead title={title} />
+</head>
+<body>
+  <Header />
+  <div class="container">
+    <Sidebar />
+    <main>
+      <slot /> {/* This is where your page content will be injected */}
+    </main>
+  </div>
+  <Footer />
+</body>
+</html>
+
+<style is:global>
+  /* Basic global styles */
+  body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+
+  .container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  main {
+    flex-grow: 1;
+    padding-left: 20px;
+  }
+
+  /* Add some basic responsive styles */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+
+    main {
+      padding-left: 0;
+      padding-top: 20px;
+    }
+  }
+</style>

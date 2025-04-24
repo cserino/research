@@ -1,0 +1,95 @@
+---
+// This component will need to dynamically fetch or receive
+// your topic and page data.
+// For simplicity here, we'll use a static example.
+// In a real application, you might use a content collection
+// or fetch from a data source.
+
+const baseUrl = import.meta.env.BASE_URL;
+const topics = [
+  {
+    title: "Steelers Draft 2025",
+    pages: [
+      { title: "Grok's Analysis", url: "steelers-draft-2025/grok" },
+      { title: "Gemini's Analysis", url: "steelers-draft-2025/gemini" },
+      { title: "ChatGPT's Analysis", url: "steelers-draft-2025/chatgpt" },
+    ],
+  }
+];
+---
+
+<aside>
+  <h2>Pages</h2>
+  <ul>
+    {topics.map((topic) => (
+      <li>
+        <h3>{topic.title}</h3>
+        <ul>
+          {topic.pages.map((page) => (
+            <li>
+              <a href={`${baseUrl}${page.url}`}>{page.title}</a>
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+</aside>
+
+<style>
+  aside {
+    width: 250px; /* Adjust sidebar width as needed */
+    flex-shrink: 0;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
+  }
+
+  aside h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+
+  aside ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  aside li {
+    margin-bottom: 15px;
+  }
+
+  aside h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.1em;
+  }
+
+  aside ul ul { /* Styles for nested page lists */
+    padding-left: 15px;
+  }
+
+  aside ul ul li {
+    margin-bottom: 5px;
+  }
+
+  aside a {
+    text-decoration: none;
+    color: #555;
+    display: block; /* Make the whole link area clickable */
+  }
+
+  aside a:hover {
+    color: #007bff;
+  }
+
+  /* Basic responsive styles for the sidebar */
+  @media (max-width: 768px) {
+    aside {
+      width: 100%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+  }
+</style>
